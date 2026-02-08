@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Amritha 💘</title>
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Segoe UI", Arial, sans-serif;
+    overflow: hidden;
+    color: white;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 34px;
+    margin-bottom: 30px;
+  }
+
+  #buttons {
+    position: relative;
+  }
+
+  button {
+    padding: 14px 30px;
+    font-size: 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    position: absolute;
+    transition: transform 0.2s;
+  }
+
+  #yes {
+    background: #28a745;
+    color: white;
+    position: static;
+    margin-right: 20px;
+  }
+
+  #no {
+    background: #dc3545;
+    color: white;
+  }
+
+  #love {
+    display: none;
+    font-size: 42px;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+
+  /* Heart animation */
+  .heart {
+    position: absolute;
+    font-size: 20px;
+    animation: floatUp 6s linear infinite;
+    opacity: 0.8;
+  }
+
+  @keyframes floatUp {
+    0% {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100vh) scale(1.8);
+      opacity: 0;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<h1>Amritha 💖<br>Will you be my Valentine?</h1>
+
+<div id="buttons">
+  <button id="yes" onclick="sayYes()">YES 💕</button>
+  <button id="no" onmouseover="escapeNo()">NO 😜</button>
+</div>
+
+<div id="love">Love youuuu 💕💕</div>
+
+<!-- Background music -->
+<audio autoplay loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  let scale = 1;
+  let rotation = 0;
+
+  function escapeNo() {
+    const noBtn = document.getElementById("no");
+
+    const x = Math.random() * (window.innerWidth - 120);
+    const y = Math.random() * (window.innerHeight - 120);
+
+    scale -= 0.05;
+    rotation += 45;
+
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+    noBtn.style.transform = `scale(${scale}) rotate(${rotation}deg)`;
+
+    if (scale < 0.4) scale = 0.4;
+  }
+
+  function sayYes() {
+    document.querySelector("h1").style.display = "none";
+    document.getElementById("buttons").style.display = "none";
+    document.getElementById("love").style.display = "block";
+  }
+
+  // Create floating hearts
+  function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "💕";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.bottom = "0px";
+    heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 6000);
+  }
+
+  setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
