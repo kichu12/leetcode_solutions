@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For Amritha 💖</title>
+<title>For Amritha 💘</title>
 
 <style>
   body {
@@ -21,14 +21,7 @@
 
   h1 {
     font-size: 34px;
-    margin-bottom: 15px;
-  }
-
-  img {
-    width: 220px;
     margin-bottom: 20px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
   }
 
   #buttons {
@@ -40,7 +33,7 @@
     padding: 14px 30px;
     font-size: 20px;
     border: none;
-    border-radius: 12px;
+    border-radius: 10px;
     cursor: pointer;
     position: absolute;
     transition: transform 0.2s;
@@ -58,19 +51,27 @@
   }
 
   #plea {
-    margin-top: 70px;
+    margin-top: 80px;
     font-size: 18px;
     opacity: 0.9;
   }
 
   #love {
     display: none;
-    font-size: 44px;
+    font-size: 40px;
     font-weight: bold;
     margin-top: 20px;
   }
 
-  /* Hearts */
+  #finalImg {
+    display: none;
+    width: 240px;
+    margin-top: 20px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  }
+
+  /* Floating hearts */
   .heart {
     position: absolute;
     font-size: 20px;
@@ -89,15 +90,15 @@
 
 <h1>Amritha 💖<br>Will you be my Valentine?</h1>
 
-<!-- Cartoon couple hugging -->
-<img src="https://i.imgur.com/6XbKZQm.png" alt="Cute couple hugging">
-
 <div id="buttons">
   <button id="yes" onclick="sayYes()">YES 💕</button>
   <button id="no" onmouseover="escapeNo()">NO 😭</button>
 </div>
 
-<div id="plea">Please don’t click NO 😢💔</div>
+<div id="plea">Don’t click NO 😭💔</div>
+
+<!-- Image shown AFTER YES -->
+<img id="finalImg" src="https://i.imgur.com/6XbKZQm.png" alt="Cute couple hugging">
 
 <div id="love">Love youuuu 💕💕</div>
 
@@ -109,19 +110,21 @@
 <script>
   let scale = 1;
   let rotation = 0;
-  const pleas = [
-    "Please don’t click NO 😭",
-    "I’ll cry 🥺💔",
-    "My heart will break 💔😢",
-    "Say YES pleaseee 🥹❤️"
+
+  const messages = [
+    "Don’t click NO 😭💔",
+    "Please say YES 🥺❤️",
+    "I’ll cry 😢",
+    "My heart 💔💔",
+    "Say YES pleaseee 🥹"
   ];
 
   function escapeNo() {
     const noBtn = document.getElementById("no");
-    const pleaText = document.getElementById("plea");
+    const plea = document.getElementById("plea");
 
     const x = Math.random() * (window.innerWidth - 120);
-    const y = Math.random() * (window.innerHeight - 150);
+    const y = Math.random() * (window.innerHeight - 140);
 
     scale -= 0.05;
     rotation += 45;
@@ -130,16 +133,17 @@
     noBtn.style.top = y + "px";
     noBtn.style.transform = `scale(${scale}) rotate(${rotation}deg)`;
 
-    pleaText.innerText = pleas[Math.floor(Math.random() * pleas.length)];
+    plea.innerText = messages[Math.floor(Math.random() * messages.length)];
 
     if (scale < 0.4) scale = 0.4;
   }
 
   function sayYes() {
     document.querySelector("h1").style.display = "none";
-    document.querySelector("img").style.display = "none";
     document.getElementById("buttons").style.display = "none";
     document.getElementById("plea").style.display = "none";
+
+    document.getElementById("finalImg").style.display = "block";
     document.getElementById("love").style.display = "block";
   }
 
@@ -150,8 +154,8 @@
     heart.style.left = Math.random() * window.innerWidth + "px";
     heart.style.bottom = "0px";
     heart.style.fontSize = (Math.random() * 20 + 15) + "px";
-    document.body.appendChild(heart);
 
+    document.body.appendChild(heart);
     setTimeout(() => heart.remove(), 6000);
   }
 
